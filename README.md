@@ -13,5 +13,6 @@ User passwords are encrypted with Bcrypt upon registration and users are assigne
 ## UI/UX
 UI developed using TailwindCSS, daisyUI (a tailwind framework), and lottie-web to implement animations on the login page and account page. All of these helped to create a production level experience for the user with front-end validations on the login and registration page along with backend validations upon a failed request.
 
-<img width="400" alt="Screen Shot 2021-11-19 at 2 04 22 PM" src="https://user-images.githubusercontent.com/85842462/142691465-991b0d90-b585-4dda-bffb-18018d8d248a.png">
+<img width="800" alt="Screen Shot 2021-11-19 at 2 04 22 PM" src="https://user-images.githubusercontent.com/85842462/142691465-991b0d90-b585-4dda-bffb-18018d8d248a.png">
 
+<img width="800" alt="Screen Shot 2021-11-19 at 2 06 14 PM" src="https://user-images.githubusercontent.com/85842462/142691644-6762898d-da16-48c3-949e-ec37b30a116f.png">
