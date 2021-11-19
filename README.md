@@ -14,16 +14,21 @@ User passwords are encrypted with Bcrypt upon registration and users are assigne
 UI developed using TailwindCSS, daisyUI (a tailwind framework), and lottie-web to implement animations on the login page and account page. All of these helped to create a production level experience for the user with front-end validations on the login and registration page along with backend validations upon a failed request.
 
 **Login page**
+
 <img width="800" alt="Login" src="https://user-images.githubusercontent.com/85842462/142691465-991b0d90-b585-4dda-bffb-18018d8d248a.png">
 
 **Registration**
+
 <img width="800" alt="Register" src="https://user-images.githubusercontent.com/85842462/142691644-6762898d-da16-48c3-949e-ec37b30a116f.png">
 
 **Dashboard with results rendered (including user favorites/stars/pins)**
+
 <img width="800" alt="Dashboard with location results" src="https://user-images.githubusercontent.com/85842462/142691899-5d7e073d-0917-4394-a874-a72740f75aa8.png">
 
 **Location information modal**
+
 <img width="721" alt="Screen Shot 2021-11-19 at 2 15 23 PM" src="https://user-images.githubusercontent.com/85842462/142692649-93505fb2-a38d-4fb1-ba61-7f3d43dc710c.png">
 
 **Account page**
+
 <img width="800" alt="Account Page" src="https://user-images.githubusercontent.com/85842462/142692029-be055957-dcc0-42cf-b7bc-f9b67db4b0be.png">
