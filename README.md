@@ -2,7 +2,7 @@
 ### React, MongoDB, Node.js, Express
 *note: Allowing location is necessary for proper use of the app*
 
-Locale is a web-app developed for outdoor enthusiasts to find nearby recreation areas that include various activities from camping to off-highway-vehicle trails, swimming to wildlife viewing and much more. Complete with a backend express server, this app has full CRUD functionality with data-interaction between API fetch results and user saved locations utilizing MongoDB and Mongoose.
+Locale is a web-app developed for outdoor enthusiasts to find nearby recreation areas that include various activities from camping to off-highway-vehicle trails, swimming to wildlife viewing and much more. Complete with a backend express server, this app has full CRUD functionality with data-interaction between API fetch results and user saved locations utilizing MongoDB and Mongoose. The planning and execution of this project used Agile Scrum practices with daily stand-ups and Trello board maintained user stories for the ideation process.
 
 ## Backend
 All server side processes use Mongoose and MongoDB to manage model methods (only a user model in this project) in the controller and routes.
