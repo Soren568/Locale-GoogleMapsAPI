@@ -32,3 +32,8 @@ UI developed using TailwindCSS, daisyUI (a tailwind framework), and lottie-web t
 **Account page**
 
 <img width="800" alt="Account Page" src="https://user-images.githubusercontent.com/85842462/142692029-be055957-dcc0-42cf-b7bc-f9b67db4b0be.png">
+
+**Wire frame**
+
+<img width="800" alt="Screen Shot 2021-12-01 at 2 55 03 PM" src="https://user-images.githubusercontent.com/85842462/144320390-714b7495-182b-4a3a-b721-2512b9b2872f.png">
+
