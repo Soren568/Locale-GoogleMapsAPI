@@ -8,8 +8,8 @@ const PlaceCard = ({ recArea, open, setOpen, setModalLocation, selected, refProp
         setOpen(true);
     }
 
-    if(selected) refProp?.current?.scrollIntoView({behavior: "smooth", block:"start"})
-    if (hovered) console.log("This element was hovered over: ", recArea.RecAreaName);
+    if (selected) refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+    // if (hovered) console.log("This element was hovered over: ", recArea.RecAreaName);
     return (
         <>
             <div className={hovered ? "max-h-full border-opacity-60 rounded-box m-4 border-4 border-green-400 bg-green-500 transition-all" : "max-h-full border-opacity-60 rounded-box m-4 border-2 border-gray-400 transition-all"}>
@@ -19,7 +19,7 @@ const PlaceCard = ({ recArea, open, setOpen, setModalLocation, selected, refProp
                 <div className={recArea.MEDIA.length > 0 ? (hovered ? "p-6 bg-green-100 rounded-b-box" : "p-6 bg-base-200 rounded-b-box") : (hovered ? "p-6 bg-green-100 rounded-box" : "p-6 bg-base-200 rounded-box")}>
                     <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">RECREATION AREA</h2>
                     <h1 className="title-font text-xl font-medium mb-3">{recArea.RecAreaName}</h1>
-                    <p className="leading-relaxed mb-3 max-h-24 overflow-y-scroll">{recArea.RecAreaDescription.includes("HREF") || recArea.RecAreaDescription.includes("href") ? null : recArea.RecAreaDescription}</p>
+                    <p className="leading-relaxed mb-3 max-h-24 overflow-y-scroll">{recArea.RecAreaDescription.includes("<") || recArea.RecAreaDescription.includes("href") ? null : recArea.RecAreaDescription}</p>
                     <div className="flex items-center flex-wrap justify-between">
                         <a onClick={e => handleModal(e)} className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0 cursor-pointer hover:text-cyan-400 transition-all">Learn More
                             <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">

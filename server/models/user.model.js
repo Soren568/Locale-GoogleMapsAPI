@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+// Creating the user schema for each user object that is created - including validations
 const UserSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -17,7 +18,8 @@ const UserSchema = new mongoose.Schema({
         validate: {
             validator: val => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),
             message: "Please enter a valid email"
-        }
+        },
+        lowercase: true
     },
     password: {
         type: String,
@@ -32,9 +34,17 @@ const UserSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
+// Stores a temporary attribute of the confirm password section on the form because we do not need to save the pw twice
 UserSchema.virtual('confirmPassword')
     .get(() => this._confirmPassword)
     .set(value => this._confirmPassword = value);
+
+UserSchema.pre('validate', function (next) {
+    if (this.password !== this.confirmPassword) {
+        this.invalidate('confirmPassword', 'Passwords must match');
+    }
+    next();
+});
 
 UserSchema.pre('save', function (next) {
     bcrypt.hash(this.password, 10)
@@ -45,11 +55,5 @@ UserSchema.pre('save', function (next) {
 });
 
 
-UserSchema.pre('validate', function (next) {
-    if (this.password !== this.confirmPassword) {
-        this.invalidate('confirmPassword', 'Password must match confirm password');
-    }
-    next();
-});
 
 module.exports.User = mongoose.model('User', UserSchema);

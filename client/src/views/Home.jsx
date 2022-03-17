@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { css } from '@emotion/react';
-import { Dialog } from '@headlessui/react';
 import GridLoader from 'react-spinners/GridLoader';
 
 import NavBar from '../components/NavBar';
@@ -8,23 +7,19 @@ import SideBar from '../components/SideBar';
 import Map from '../components/Map/Map';
 import axios from 'axios';
 import Modal from '../components/Modal';
-import UserDrawer from '../components/UserDrawer';
+import { set } from 'mongoose';
 
 const Home = () => {
-    // Miscellaneous
-    const [darkMode, setDarkMode] = useState(false);
-    const [userDrawer, setUserDrawer] = useState(false);
-
     // User info
     const [activeUser, setActiveUser] = useState();
     const [allFavorites, setAllFavorites] = useState(false);
     const [allStarred, setAllStarred] = useState()
 
-    // Api requests info
+    // REC api info
     const [coords, setCoords] = useState();
     const [bounds, setBounds] = useState();
     const [recAreas, setRecAreas] = useState();
-    
+
     // Modal and Location info
     const [open, setOpen] = useState(false);
     const [modalLocation, setModalLocation] = useState();
@@ -32,20 +27,25 @@ const Home = () => {
     const [isFavorite, setIsFavorite] = useState(false);
     const [childClicked, setChildClicked] = useState();
     const [childHover, setChildHover] = useState();
-    
+
     const earthRadius = 6378.8;
 
     // Reset like and starred state on modal close
     useEffect(() => {
-        if(open == false){
+        if (open === false) {
             setIsFavorite(false);
             setIsStarred(false);
         }
     }, [open])
 
-    // Get user info
+    // Get user info based on stored userId
     useEffect(() => {
-        axios.get('http://localhost:8000/api/users/' + sessionStorage.getItem("userId"), {withCredentials: true})
+        if (sessionStorage.getItem("userId") === 'guest') {
+            setActiveUser('guest')
+            setAllFavorites([])
+            setAllStarred([])
+        }
+        axios.get('http://localhost:8000/api/users/' + sessionStorage.getItem("userId"), { withCredentials: true })
             .then(res => {
                 // console.log(res);
                 setActiveUser(res.data.user);
@@ -57,7 +57,7 @@ const Home = () => {
             })
     }, [isFavorite, isStarred])
 
-    // Get the users current location on page load
+    // Get the users current location on page load - built in module
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
             setCoords({ lat: Number(position.coords.latitude), lng: Number(position.coords.longitude) })
@@ -89,35 +89,38 @@ const Home = () => {
                 .catch(err => console.log(err))
         }
     }, [bounds])
+
+    // Loading icon css rules
     const override = css`
         display: block;
         margin: 0 auto;
         border-color: red;
         `
+
     return (
+        // If we have current coords from navigator then load the google maps api - else display a loading spinner
         coords ? (
             <>
-                <div className="h-screen w-screen">
-                    {/* {userDrawer ? <UserDrawer userDrawer={userDrawer} setUserDrawer={setUserDrawer} /> : null} */}
-                    {open ? <Modal 
-                        open={open} 
-                        setOpen={setOpen} 
-                        modalLocation={modalLocation} 
-                        isFavorite={isFavorite} 
-                        setIsFavorite={setIsFavorite} 
-                        isStarred={isStarred} 
-                        setIsStarred={setIsStarred} 
+                <div className="h-full w-full">
+                    {open ? <Modal
+                        open={open}
+                        setOpen={setOpen}
+                        modalLocation={modalLocation}
+                        isFavorite={isFavorite}
+                        setIsFavorite={setIsFavorite}
+                        isStarred={isStarred}
+                        setIsStarred={setIsStarred}
                         activeUser={activeUser} /> : null}
-                    <NavBar/>
+                    <NavBar activeUser={activeUser} />
                     <div className="grid max-h-full grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-                        <SideBar 
-                            className="col-span-1 lg:col-span-2 xl:col-span-1 bg-gray-700" 
-                            recAreas={recAreas} 
-                            setOpen={setOpen} 
-                            open={open} 
-                            setModalLocation={setModalLocation} 
+                        <SideBar
+                            className="col-span-1 lg:col-span-2 xl:col-span-1 bg-gray-700"
+                            recAreas={recAreas}
+                            setOpen={setOpen}
+                            open={open}
+                            setModalLocation={setModalLocation}
                             childClicked={childClicked}
-                            childHovered={childHover}/>
+                            childHovered={childHover} />
                         <div className="col-span-2 bg-base-300 md:col-span-2 lg:col-span-3 xl:col-span-auto">
                             <Map
                                 coords={coords}
@@ -125,7 +128,6 @@ const Home = () => {
                                 bounds={bounds}
                                 setBounds={setBounds}
                                 recAreas={recAreas}
-                                darkMode={darkMode}
                                 setChildClicked={setChildClicked}
                                 childClicked={childClicked}
                                 activeUser={activeUser}
