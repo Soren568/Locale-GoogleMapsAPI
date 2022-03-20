@@ -1,5 +1,5 @@
 
-import React, { createRef, useEffect, useRef, useState } from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 import { Link, navigate } from '@reach/router';
 import { Icon } from '@iconify/react';
 import axios from 'axios';

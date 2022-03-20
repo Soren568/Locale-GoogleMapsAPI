@@ -11,6 +11,7 @@ module.exports.findAllUsers = (req, res) => {
 }
 
 module.exports.findOneUser = (req, res) => {
+    console.log("This is a route")
     User.findOne({ _id: req.params.id })
         .then(oneUser => res.json({ user: oneUser }))
         .catch(err => res.status(400).json(err));

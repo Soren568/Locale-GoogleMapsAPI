@@ -18,13 +18,6 @@ const NavBar = props => {
     return (
         <div>
             <div className="navbar shadow-lg bg-neutral text-neutral-content">
-                <div className="flex-none hidden lg:flex">
-                    <button className="btn btn-square btn-ghost">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
                 <div className="flex-1 hidden px-2 mx-2 md:flex " >
                     <LOGO className="mr-3 cursor-pointer" onClick={e => navigate("/dashboard")} />
                     <span className="text-4xl font-bold font-megrim cursor-pointer" onClick={e => navigate("/dashboard")}>

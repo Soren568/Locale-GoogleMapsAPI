@@ -28,7 +28,7 @@ const UserPage = () => {
 
     useEffect(() => {
         if (sessionStorage.getItem("userId") === 'guest') navigate('/dashboard')
-        axios.get('/api/users/' + sessionStorage.getItem("userId"), { withCredentials: true })
+        axios.get('http://localhost:8000/api/users/' + sessionStorage.getItem("userId"), { withCredentials: true })
             .then(res => {
                 console.log(res);
                 setActiveUser(res.data.user);
@@ -44,7 +44,7 @@ const UserPage = () => {
     const handleGet = e => {
         if (sessionStorage.getItem("userId") === 'guest') navigate('/dashboard')
         e.preventDefault();
-        axios.get("/api/users", { withCredentials: true })
+        axios.get("http://localhost:8000/api/users", { withCredentials: true })
             .then(res => {
                 console.log(res);
                 setDomChange(prev => !prev)
